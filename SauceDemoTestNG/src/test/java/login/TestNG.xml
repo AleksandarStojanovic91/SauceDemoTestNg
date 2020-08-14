@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SauceDemo" parallel="classes" thread-count="2">
+
+    <parameter name="username" value="username"/>
+    <parameter name="password" value="password"/>
+    <parameter name="selektor1" value=".peek"/>
+    <parameter name="errorMessage" value=" "/>
+    <parameter name="selektor2" value="h3"/>
+
+    <test name="Normal Login">
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="secret_sauce"/>
+        <parameter name="selektor1" value=".peek"/>
+        <parameter name="errorMessage" value="Products"/>
+        <parameter name="selektor2" value=".product_label"/>
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+    <test name="Empty Username">
+        <parameter name="username" value=" "/>
+        <parameter name="password" value="password"/>
+        <parameter name="selektor1" value=".error-button"/>
+        <parameter name="errorMessage" value="Epic sadface: Username and password do not match any user in this service"/>
+        <parameter name="selektor2" value="h3"/>
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+    <test name="Empty Password">
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="password"/>
+        <parameter name="selektor1" value=".error-button"/>
+        <parameter name="errorMessage" value="Epic sadface: Username and password do not match any user in this service"/>
+        <parameter name="selektor2" value="h3"/>
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+    <test name="Invalid Username">
+        <parameter name="username" value="1 @ %"/>
+        <parameter name="password" value="password"/>
+        <parameter name="selektor1" value=".error-button"/>
+        <parameter name="errorMessage" value="Epic sadface: Username and password do not match any user in this service"/>
+        <parameter name="selektor2" value="h3"/>
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+    <test name="Invalid Password">
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="# % $"/>
+        <parameter name="selektor1" value=".error-button"/>
+        <parameter name="errorMessage" value="Epic sadface: Username and password do not match any user in this service"/>
+        <parameter name="selektor2" value="h3"/>
+
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+    <test name="Locked user Username">
+        <parameter name="username" value="locked_out_user"/>
+        <parameter name="password" value="secret_sauce"/>
+        <parameter name="selektor1" value=".error-button"/>
+        <parameter name="errorMessage" value="Epic sadface: Sorry, this user has been locked out."/>
+        <parameter name="selektor2" value="h3"/>
+        <classes>
+            <class name="login.ChromeTests"></class>
+            <class name="login.FirefoxTests"></class>
+        </classes>
+    </test>
+
+</suite>

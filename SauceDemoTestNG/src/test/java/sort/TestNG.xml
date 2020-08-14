@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SauceDemo" parallel="classes" thread-count="2">
+
+    <parameter name="username" value="username"/>
+
+    <test name="Standard User">
+        <parameter name="username" value="standard_user"/>
+        <classes>
+            <class name="sort.ChromeTest"/>
+            <class name="sort.FirefoxTest"/>
+        </classes>
+    </test>
+    <test name="Problem User">
+        <parameter name="username" value="problem_user"/>
+        <classes>
+            <class name="sort.ChromeTest"/>
+            <class name="sort.FirefoxTest"/>
+        </classes>
+    </test>
+
+</suite>
